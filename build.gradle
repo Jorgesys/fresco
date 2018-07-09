@@ -22,6 +22,8 @@ plugins {
     id "de.undercouch.download" version "3.1.2"
 }
 
+apply plugin: 'de.undercouch.download'
+
 project.ext {
     buildToolsVersion = "${BUILD_TOOLS_VERSION}"
     compileSdkVersion = COMPILE_SDK_VERSION.toInteger()
@@ -66,8 +68,6 @@ subprojects {
             project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
         }
     }
-
-    apply plugin: 'de.undercouch.download'
 
     ext.makeNdkTasks = { name, deps ->
         task "ndk_build_${name}"(dependsOn: deps, type: Exec) {
